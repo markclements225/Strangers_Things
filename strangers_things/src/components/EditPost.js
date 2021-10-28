@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { FetchEditPost } from "./FetchRequests";
 export const BASE_URL =
   "https://strangers-things.herokuapp.com/api/2109-LSU-RM-WEB-FT";
-export const TOKEN = window.localStorage.token;
+const TOKEN = window.localStorage.getItem("token");
+const 
 
 const EditPost = ({ posts, setPosts, postId, setPostId }) => {
   const [title, setTitle] = useState([]);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FetchCreatePost } from "./FetchRequests";
 import { useHistory } from "react-router";
+const TOKEN = window.localStorage.getItem("token");
 // import EditPost from "./EditPost";
 
 const CreatePost = () => {
@@ -9,15 +10,10 @@ const CreatePost = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [willDeliver, setWillDeliver] = useState("");
-  const [authorization, setAuthorization] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (window.localStorage.token) {
-      let delivery = document.getElementById("willYouDeliver").value;
-      setWillDeliver(delivery);
       const data = await FetchCreatePost(title, description, price);
-    }
     history.push("/posts");
   };
 
@@ -60,11 +56,8 @@ const CreatePost = () => {
         <br />
         <label>
           Will Deliver?
-          <select id="willYouDeliver">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
         </label>
+        <input type="checkbox" name="delivery" value="1" onChange={(e) => setWillDeliver(e.target.value)}></input>
         <br />
         <input type="submit" value="Create new listing" />
       </form>
@@ -73,3 +66,8 @@ const CreatePost = () => {
 };
 
 export default CreatePost;
+
+{/* <select id="willYouDeliver" onChange={(e) => setWillDeliver(e.target.value)}>
+<option value="true">Yes</option>
+<option value="false">No</option>
+</select> */}

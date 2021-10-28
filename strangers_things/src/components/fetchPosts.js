@@ -7,7 +7,8 @@ import {
   Link,
   NavLink,
 } from "react-router-dom";
-// import CreatePostButton from "./Buttons.js";
+import { FetchNewPosts } from "./FetchRequests";
+const TOKEN = window.localStorage.getItem("token");
 
 const FetchPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -16,7 +17,13 @@ const FetchPosts = () => {
   useEffect(() => {
     const FetchPosts = async () => {
       const response = await fetch(
-        "https://strangers-things.herokuapp.com/api/2109-LSU-RM-WEB-FT/posts"
+        "https://strangers-things.herokuapp.com/api/2109-LSU-RM-WEB-FT/posts", {
+          method:"GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${TOKEN}`
+          }
+        }
       );
       const { data } = await response.json();
       console.log(data);

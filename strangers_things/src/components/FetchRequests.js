@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 export const BASE_URL =
   "https://strangers-things.herokuapp.com/api/2109-LSU-RM-WEB-FT";
-export const TOKEN = window.localStorage.token;
+export const TOKEN = window.localStorage.getItem("token");
 
 // function to REGISTER on site
 export async function FetchRegistration(username, password) {
@@ -40,13 +40,22 @@ export async function FetchLogin(username, password) {
   return data;
 }
 
+export async function FetchNewPosts(title, description, price, willDeliver) {
+  const response = await fetch(`${BASE_URL}/posts`, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${TOKEN}`,
+    }
+  })
+}
+
 // function to CREATE new post
 export async function FetchCreatePost(title, description, price, willDeliver) {
   const response = await fetch(`${BASE_URL}/posts`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
-      Authorization: `Bearer ${TOKEN}`,
+      "Authorization": `Bearer ${TOKEN}`,
     },
     body: JSON.stringify({
       post: {

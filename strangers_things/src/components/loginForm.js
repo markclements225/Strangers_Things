@@ -14,17 +14,25 @@ const LoginForm = ({ setIsLoggedIn }) => {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = await FetchLogin(username, password);
+    if (data.success === false) {
+      setErrorMessage(data.error.message);
+    } else {
     window.localStorage.setItem("token", data.data.token);
     setIsLoggedIn(true);
+    console.log(data);
     history.push("/posts");
+    }
   };
   return (
     <>
       <h2>Login to Stranger's Things</h2>
+      {errorMessage ? <p>{errorMessage}</p> : 
+      null}
       <form className="loginForm" onSubmit={handleSubmit}>
         <label>
           <input
