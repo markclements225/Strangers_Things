@@ -70,7 +70,7 @@ export async function FetchCreatePost(title, description, price, willDeliver) {
 
 // function to EDIT post
 // export async function FetchEditPost(title, description, price, willDeliver) {
-//   const response = await fetch(`${BASE_URL}/posts/${POST_ID}`, {
+//   const response = await fetch(`${BASE_URL}/posts/`, {
 //     method: "PATCH",
 //     headers: {
 //       "Content-type": "application/json",

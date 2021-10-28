@@ -14,12 +14,15 @@ import FetchPosts from "./components/fetchPosts.js";
 import RegisterForm from "./components/RegisterForm.js";
 import CreatePost from "./components/CreatePost.js";
 import SeeMessages from "./Messages.js";
+import EditPost from "./components/EditPost.js";
 
 //isLoggedIn, setIsLoggedin --> pass isLoggedIN to nav componenet and only
 //render certain links if isLoggedin = true
 
 const App = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [postId, setPostId] = useState(null);
 
   useEffect(() => {
     if (window.localStorage.token) {
@@ -44,6 +47,14 @@ const App = (props) => {
             </Route>
             <Route path="/messages">
               <SeeMessages setIsLoggedIn={setIsLoggedIn} />
+            </Route>
+            <Route path="/edit">
+              <EditPost
+                posts={posts}
+                setPosts={setPosts}
+                postId={postId}
+                setPostId={setPostId}
+              />
             </Route>
             <Route path="/login">
               <LoginForm setIsLoggedIn={setIsLoggedIn} />

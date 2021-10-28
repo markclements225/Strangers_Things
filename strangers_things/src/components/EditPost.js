@@ -1,25 +1,54 @@
 import React, { useState } from "react";
 import { FetchEditPost } from "./FetchRequests";
-export const BASE_URL =
+const BASE_URL =
   "https://strangers-things.herokuapp.com/api/2109-LSU-RM-WEB-FT";
 const TOKEN = window.localStorage.getItem("token");
-const 
 
 const EditPost = ({ posts, setPosts, postId, setPostId }) => {
   const [title, setTitle] = useState([]);
   const [description, setDescription] = useState([]);
   const [price, setPrice] = useState([]);
-  const [location, setLocation] = useState([]);
   const [willDeliver, setWillDeliver] = useState(true);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = await FetchEditPost(title, description, price, willDeliver);
+    const response = await fetch(`${BASE_URL}/posts/${postId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${TOKEN}`,
+      },
+      body: JSON.stringify({
+        post: {
+          title,
+          description,
+          price,
+          willDeliver,
+        },
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+    if(data && data.title) {
+      const newPosts = posts.map(post => {
+        if(post.id === postId) {
+          return data;
+        } else {
+          return post;
+        }
+      });
+      setPosts(newPosts);
+      setTitle("");
+      setDescription("");
+      setPrice("");
+      setWillDeliver("");
+      setPostId(null);
+    }
   };
 
   return (
     <>
-      {posts.map((post) => (
+    <h2>Edit your post</h2>
         <form className="createPostForm" onSubmit={handleSubmit}>
           <label>
             Title:
@@ -27,7 +56,7 @@ const EditPost = ({ posts, setPosts, postId, setPostId }) => {
               type="text"
               required
               name="title"
-              defaultValue={data.title}
+              defaultValue={title}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -63,9 +92,10 @@ const EditPost = ({ posts, setPosts, postId, setPostId }) => {
             </select>
           </label>
           <br />
-          <input type="submit" value="Create new listing" />
+          <input type="submit" value="Edit post" />
         </form>
-      ))}
     </>
   );
 };
+
+export default EditPost;

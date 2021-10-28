@@ -10,10 +10,10 @@ const RegisterForm = ({ setIsLoggedIn }) => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSubmit = async (event) => {
+    event.preventDefault();
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match");
     } else {
-    event.preventDefault();
     const data = await FetchRegistration(username, password);
     window.localStorage.setItem("token", data.data.token);
     setIsLoggedIn(true);

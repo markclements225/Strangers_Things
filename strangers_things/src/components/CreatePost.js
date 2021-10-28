@@ -9,13 +9,17 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [willDeliver, setWillDeliver] = useState("");
+  const [willDeliver, setWillDeliver] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
       const data = await FetchCreatePost(title, description, price);
     history.push("/posts");
   };
+
+  useEffect(() => {
+    console.log(willDeliver);
+  }, [willDeliver]);
 
   return (
     <>
@@ -57,7 +61,7 @@ const CreatePost = () => {
         <label>
           Will Deliver?
         </label>
-        <input type="checkbox" name="delivery" value="1" onChange={(e) => setWillDeliver(e.target.value)}></input>
+        <input type="checkbox" checked={willDeliver} name="delivery" onChange={() => setWillDeliver(!willDeliver)}></input>
         <br />
         <input type="submit" value="Create new listing" />
       </form>
