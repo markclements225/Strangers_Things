@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FetchEditPost } from "./FetchRequests";
 const BASE_URL =
   "https://strangers-things.herokuapp.com/api/2109-LSU-RM-WEB-FT";
 const TOKEN = window.localStorage.getItem("token");
@@ -31,7 +30,7 @@ const EditPost = ({ posts, setPosts, postId, setPostId }) => {
     console.log(data);
     if(data && data.title) {
       const newPosts = posts.map(post => {
-        if(post.id === postId) {
+        if(post._id === postId) {
           return data;
         } else {
           return post;

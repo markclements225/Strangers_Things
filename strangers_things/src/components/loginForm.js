@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FetchLogin } from "./FetchRequests";
 import { useHistory } from "react-router";
-import RegisterForm from "./RegisterForm";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
   NavLink,
 } from "react-router-dom";
 

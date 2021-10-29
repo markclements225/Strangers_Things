@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 export const BASE_URL =
   "https://strangers-things.herokuapp.com/api/2109-LSU-RM-WEB-FT";
 export const TOKEN = window.localStorage.getItem("token");
@@ -68,42 +66,12 @@ export async function FetchCreatePost(title, description, price, willDeliver) {
   });
 }
 
-// function to EDIT post
-// export async function FetchEditPost(title, description, price, willDeliver) {
-//   const response = await fetch(`${BASE_URL}/posts/`, {
-//     method: "PATCH",
-//     headers: {
-//       "Content-type": "application/json",
-//       Authorization: `Bearer ${TOKEN}`,
-//     },
-//     body: JSON.stringify({
-//       post: {
-//         title,
-//         description,
-//         price,
-//         willDeliver,
-//       },
-//     }),
-//   });
-// }
-
-// function to DELETE post
-// export async function FetchDeletePost() {
-//   const response = await fetch(`${BASE_URL}/posts${POST_ID}`, {
-//     method: "DELETE",
-//     headers: {
-//       "Content-type": "application/json",
-//       Authorization: `Bearer ${TOKEN}`,
-//     },
-//   });
-// }
-
 // function to fetch ME
-export async function FetchMe() {
-  const response = await fetch(`${BASE_URL}/users/me`, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${TOKEN}`,
-    },
-  });
-}
+// export async function FetchMe() {
+//   const response = await fetch(`${BASE_URL}/users/me`, {
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${TOKEN}`,
+//     },
+//   });
+// }

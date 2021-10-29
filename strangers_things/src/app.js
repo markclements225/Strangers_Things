@@ -3,9 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  NavLink,
-  useHistory,
 } from "react-router-dom";
 import LoginForm from "./components/loginForm.js";
 import Nav from "./nav.js";

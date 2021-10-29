@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
   NavLink,
 } from "react-router-dom";
-import { FetchNewPosts } from "./FetchRequests";
 import EditPost from "./EditPost";
 const BASE_URL =
   "https://strangers-things.herokuapp.com/api/2109-LSU-RM-WEB-FT";
@@ -15,7 +10,6 @@ const TOKEN = window.localStorage.getItem("token");
 
 const FetchPosts = () => {
   const [posts, setPosts] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [postId, setPostId] = useState(null);
 
   useEffect(() => {
@@ -31,7 +25,7 @@ const FetchPosts = () => {
         }
       );
       const { data } = await response.json();
-      console.log(data);
+      // console.log(data);
       setPosts(data.posts);
     };
     FetchPosts();

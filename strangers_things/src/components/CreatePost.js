@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FetchCreatePost } from "./FetchRequests";
 import { useHistory } from "react-router";
-const TOKEN = window.localStorage.getItem("token");
-// import EditPost from "./EditPost";
 
 const CreatePost = () => {
   const history = useHistory();
@@ -70,8 +68,3 @@ const CreatePost = () => {
 };
 
 export default CreatePost;
-
-{/* <select id="willYouDeliver" onChange={(e) => setWillDeliver(e.target.value)}>
-<option value="true">Yes</option>
-<option value="false">No</option>
-</select> */}
