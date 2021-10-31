@@ -4,13 +4,15 @@ import {
   NavLink,
 } from "react-router-dom";
 import EditPost from "./EditPost";
+import SearchBar from "./SearchBar";
+import SendMessages from "./SendMessages";
 const BASE_URL =
   "https://strangers-things.herokuapp.com/api/2109-LSU-RM-WEB-FT";
-const TOKEN = window.localStorage.getItem("token");
 
-const FetchPosts = () => {
+  const FetchPosts = () => {
   const [posts, setPosts] = useState([]);
   const [postId, setPostId] = useState(null);
+  const TOKEN = window.localStorage.getItem("token");
 
   useEffect(() => {
     const FetchPosts = async () => {
@@ -20,7 +22,7 @@ const FetchPosts = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${TOKEN}`,
+            "Authorization": `Bearer ${TOKEN}`,
           },
         }
       );
@@ -39,16 +41,12 @@ const FetchPosts = () => {
       "Authorization": `Bearer ${TOKEN}`
     }
   })
-  const data = await response.json();
-  if(data) {
-    const newPosts = posts.filter(post => post._id !== postId);
-    setPosts(newPosts)
-  }
-  }
+}
 
   return (
     <>
       <h1 className="posts">Posts</h1>
+      <SearchBar />
       {TOKEN ? <NavLink to="/createpost">
         <button>Create New Post</button>
         </NavLink> : null}
@@ -66,7 +64,7 @@ const FetchPosts = () => {
               </NavLink>
               <button onClick={() => handleDelete(post._id)}>Delete Post</button>
             </>
-          ) : null}
+          ) : <NavLink to="/sendmessage"> <button>Message seller</button> </NavLink>}
           <hr />
         </div>
       ))}

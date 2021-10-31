@@ -3,7 +3,7 @@ const BASE_URL =
   "https://strangers-things.herokuapp.com/api/2109-LSU-RM-WEB-FT";
 const TOKEN = window.localStorage.getItem("token");
 
-const EditPost = ({ posts, setPosts, postId, setPostId }) => {
+const EditPost = ({ posts, setPosts, postId, setPostId, searchQuery, setSearchQuery }) => {
   const [title, setTitle] = useState([]);
   const [description, setDescription] = useState([]);
   const [price, setPrice] = useState([]);

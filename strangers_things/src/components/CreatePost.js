@@ -15,10 +15,6 @@ const CreatePost = () => {
     history.push("/posts");
   };
 
-  useEffect(() => {
-    console.log(willDeliver);
-  }, [willDeliver]);
-
   return (
     <>
       <h2>List new item for sale</h2>
